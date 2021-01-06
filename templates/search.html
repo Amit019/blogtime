@@ -1,0 +1,140 @@
+{%extends 'base.html'%}
+{%load static%}
+{% block contact%}
+
+<!-- SECTION -->
+<div class="section">
+	<!-- container -->
+	<div class="container">
+		<!-- row -->
+		<div class="row">
+			<div class="col-md-8">
+				<!-- For tag -->
+				{%if tag%}
+				<div class="section-title">
+
+					<h2 class="title">
+						Tag: {{tag}}
+
+					</h2>
+				</div>
+				<!-- post -->
+				{%for post in posts%}
+				<div class="post post-row">
+					<a class="post-img" href="{%url 'article' post.slug %}"><img src="{{post.thumbnail.url}}"
+							alt=""></a>
+					<div class="post-body">
+						<div class="post-category">
+							<a href="{%url 'index_by_cate' post.category.pk %}">{{post.category}}</a>
+						</div>
+						<h3 class="post-title"><a href="{%url 'article' post.slug %}">{{post.title}}</a></h3>
+						<ul class="post-meta">
+							<li><a href="#">{{post.author.username}}</a></li>
+							<li>{{post.publish.date}}
+							</li>
+						</ul>
+						<p>{{post.overview|slice:":150"}}</p>
+					</div>
+				</div>
+				{%endfor%}
+				{%endif%}
+				<!-- /For tag -->
+
+				<!-- For Category -->
+				{%if category%}
+				<div class="section-title">
+					<h2 class="title">
+						Category : {{category.name}}
+
+					</h2>
+				</div>
+				{%for post in object_list%}
+				<div class="post post-row">
+					<a class="post-img" href="{%url 'article' post.slug %}"><img src="{{post.thumbnail.url}}"
+							alt=""></a>
+					<div class="post-body">
+						<div class="post-category">
+							<a href="{%url 'index_by_cate' post.category.pk %}">{{post.category}}</a>
+						</div>
+						<h3 class="post-title"><a href="{%url 'article' post.slug %}">{{post.title}}</a></h3>
+						<ul class="post-meta">
+							<li><a href="#">{{post.author.username}}</a></li>
+							<li>{{post.publish.date}}
+							</li>
+						</ul>
+						<p>{{post.overview|slice:":150"}}</p>
+					</div>
+				</div>
+				{%endfor%}
+				{%endif%}
+				<!-- /For Category -->
+
+				
+				<!-- For Search -->
+				{%if queryset%}
+				<div class="section-title">
+					<h2 class="title">
+						{{title}}
+
+					</h2>
+				</div>
+				{%for post in queryset%}
+				<div class="post post-row">
+					<a class="post-img" href="{%url 'article' post.slug %}"><img src="{{post.thumbnail.url}}"
+							alt=""></a>
+					<div class="post-body">
+						<div class="post-category">
+							<a href="{%url 'index_by_cate' post.category.pk %}">{{post.category}}</a>
+						</div>
+						<h3 class="post-title"><a href="{%url 'article' post.slug %}">{{post.title}}</a></h3>
+						<ul class="post-meta">
+							<li><a href="#">{{post.author.username}}</a></li>
+							<li>{{post.publish.date}}
+							</li>
+						</ul>
+						<p>{{post.overview|slice:":150"}}</p>
+					</div>
+				</div>
+				{%endfor%}
+				{%endif%}
+				
+				<!-- /For Category -->
+				
+			</div>
+			<!-- post -->
+
+
+			<div class="col-md-4">
+				<!-- galery widget -->
+				<div class="aside-widget">
+					<div class="section-title">
+						<h2 class="title">Instagram</h2>
+					</div>
+					<div class="galery-widget">
+						<ul>
+							<li><a href="#"><img src="{%static ''%}img/galery-1.jpg" alt=""></a></li>
+							<li><a href="#"><img src="{%static ''%}img/galery-2.jpg" alt=""></a></li>
+							<li><a href="#"><img src="{%static ''%}img/galery-3.jpg" alt=""></a></li>
+							<li><a href="#"><img src="{%static ''%}img/galery-4.jpg" alt=""></a></li>
+							<li><a href="#"><img src="{%static ''%}img/galery-5.jpg" alt=""></a></li>
+							<li><a href="#"><img src="{%static ''%}img/galery-6.jpg" alt=""></a></li>
+						</ul>
+					</div>
+				</div>
+				<!-- /galery widget -->
+
+				<!-- Ad widget -->
+				<div class="aside-widget text-center">
+					<a href="#" style="display: inline-block;margin: auto;">
+						<img class="img-responsive" src="{%static ''%}img/ad-1.jpg" alt="">
+					</a>
+				</div>
+				<!-- /Ad widget -->
+			</div>
+		</div>
+		<!-- /row -->
+	</div>
+	<!-- /container -->
+</div>
+<!-- /SECTION -->
+{%endblock%}
